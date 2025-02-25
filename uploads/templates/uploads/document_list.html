@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Document List</title>
+</head>
+<body>
+    <h1>Uploaded Documents</h1>
+    <ul>
+        {% for document in documents %}
+            <li>
+                <strong>{{ document.title }}</strong> -
+                <a href="{{ document.file.url }}" download>Download</a>
+                (Uploaded on: {{ document.uploaded_at }})
+            </li>
+        {% empty %}
+            <li>No documents uploaded yet.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

@@ -1,0 +1,43 @@
+from django.shortcuts import render, redirect
+from .forms import DocumentForm
+
+
+
+
+def upload_document(request):
+    if request.method == "POST":
+        form = DocumentForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('success')  # Redirect to success page
+    else:
+        form = DocumentForm()
+
+    return render(request, 'uploads/upload.html', {'form': form})  # Corrected template path
+
+
+def upload_success(request):
+    return render(request, 'uploads/success.html')  # Corrected template path
+
+
+from django.http import HttpResponse
+
+
+def home(request):
+    return HttpResponse("Hello, this is the uploads home page!")
+
+
+from django.shortcuts import render
+from .models import Document
+
+def document_list(request):
+    documents = Document.objects.all().order_by('-uploaded_at')  # Fetch and order by latest
+    return render(request, 'uploads/document_list.html', {'documents': documents})
+
+from django.shortcuts import get_object_or_404
+from django.http import FileResponse
+from .models import Document  # Import your model
+
+def download_document(request, doc_id):
+    document = get_object_or_404(Document, id=doc_id)
+    return FileResponse(document.file.open(), as_attachment=True)
