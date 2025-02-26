@@ -5,7 +5,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('uploads.urls')),  # Removing 'uploads/' prefix for cleaner URLs
+    path('uploads/', include('uploads.urls')),  # Removing 'uploads/' prefix for cleaner URLs
 ]
 
 if settings.DEBUG:

@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Success</title>
+    <title>Upload Successful</title>
 </head>
 <body>
     <h2>File Uploaded Successfully!</h2>
-    <a href="{% url 'upload' %}">Upload another file</a>
+
+    <p><a href="{% url 'upload_document' %}">Upload another file</a></p>
+    <p><a href="{% url 'document_list' %}">View uploaded documents</a></p>
+
 </body>
 </html>
