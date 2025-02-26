@@ -30,9 +30,20 @@ def home(request):
 from django.shortcuts import render
 from .models import Document
 
+from django.shortcuts import render
+from .models import Document
+
+
 def document_list(request):
-    documents = Document.objects.all().order_by('-uploaded_at')  # Fetch and order by latest
-    return render(request, 'uploads/document_list.html', {'documents': documents})
+    category = request.GET.get('category', '')  # Get category filter from URL
+    if category:
+        documents = Document.objects.filter(category=category).order_by('-uploaded_at')  # Filter and order
+    else:
+        documents = Document.objects.all().order_by('-uploaded_at')  # Fetch all and order by latest
+
+    categories = Document.objects.values_list('category', flat=True).distinct()  # Get unique categories
+    return render(request, 'uploads/document_list.html', {'documents': documents, 'categories': categories})
+
 
 from django.shortcuts import get_object_or_404
 from django.http import FileResponse
