@@ -24,7 +24,7 @@
             <li>
                 <strong>{{ document.title }}</strong> -
                 <a href="{{ document.file.url }}" download>Download</a>
-                (Uploaded on: {{ document.uploaded_at }})
+                (Uploaded on: {{ document.uploaded_at|date:"F d, Y, h:i A" }})
                 - Category: {{ document.category }}
             </li>
         {% empty %}

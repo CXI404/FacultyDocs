@@ -5,9 +5,12 @@
 </head>
 <body>
     <h2>Upload a Document</h2>
+
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        {{ form.as_p }}
+
+        {{ form.as_p }}  <!-- This will auto-generate all fields with error messages -->
+
         <button type="submit">Upload</button>
     </form>
 </body>

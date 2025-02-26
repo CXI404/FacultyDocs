@@ -4,16 +4,17 @@ from .forms import DocumentForm
 
 
 
+
 def upload_document(request):
     if request.method == "POST":
-        form = DocumentForm(request.POST, request.FILES)
+        form = DocumentForm(request.POST, request.FILES)  # Uses ModelForm
         if form.is_valid():
-            form.save()
-            return redirect('success')  # Redirect to success page
+            form.save()  # Saves faculty name, title, file, and category
+            return redirect('upload_success')
     else:
         form = DocumentForm()
 
-    return render(request, 'uploads/upload.html', {'form': form})  # Corrected template path
+    return render(request, 'uploads/upload.html', {'form': form})
 
 
 def upload_success(request):
