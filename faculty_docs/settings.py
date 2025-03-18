@@ -58,7 +58,7 @@ ROOT_URLCONF = 'faculty_docs.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'uploads/templates'],
+        'DIRS': [BASE_DIR / 'templates', BASE_DIR / 'uploads/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -134,4 +134,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # Custom User Model
 AUTH_USER_MODEL = 'accounts.FacultyUser'
 
+LOGIN_REDIRECT_URL = "/uploads/upload"
+LOGOUT_REDIRECT_URL = "/accounts/login/"
 

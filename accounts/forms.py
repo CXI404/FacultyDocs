@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from .models import FacultyUser
 
-class FacultyRegistrationForm(UserCreationForm)
+class FacultyRegistrationForm(UserCreationForm):
     faculty_id=forms.CharField(max_length=20)
 
 
